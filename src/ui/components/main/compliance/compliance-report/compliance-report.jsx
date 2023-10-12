@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react';
 import {
   Text,
   Link,
@@ -10,7 +11,6 @@ import {
 } from '@react-pdf/renderer';
 import { useTranslation } from 'react-i18next';
 
-import { useStyles } from './ComplianceReport.styles';
 import { formatDateUTC, insertAt, toDecimals } from '../../../../../utils';
 
 // Styles
@@ -102,7 +102,6 @@ Font.register({
 
 export const ComplianceReport = () => {
   const { t } = useTranslation();
-  const classes = useStyles();
   const scanUrl = useStoreState(state => state.common.networkConfig.scanUrl);
   const note = useStoreState(state => state.compliance.note);
   const depositData = useStoreState(state => state.compliance.depositData);
@@ -213,12 +212,17 @@ export const ComplianceReport = () => {
   };
 
   return (
-    <div className={classes.container}>
+    <Box marginTop={30} textAlign="center">
       <PDFDownloadLink fileName={fileName} document={renderReport()}>
-        <Button variant="outlined" color="primary" className={classes.button} disableFocusRipple>
+        <Button
+          variant="outlined"
+          color="primary.100"
+          fontSize="1rem"
+          borderRadius={4}
+          bg="primary.900">
           {t('generatePdfReport')}
         </Button>
       </PDFDownloadLink>
-    </div>
+    </Box>
   );
 };

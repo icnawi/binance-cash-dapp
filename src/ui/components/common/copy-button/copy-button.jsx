@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
+import { Textarea } from '@chakra-ui/react';
+import { useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useStyles } from './CopyButton.styles';
 import { Tooltip } from '../tooltip/tooltip.jsx';
 
 export const CopyButton = ({
@@ -14,15 +14,17 @@ export const CopyButton = ({
   ...rest
 }) => {
   const { t } = useTranslation();
-  const classes = useStyles();
-  const textArea = useRef();
   const [isCopied, setCopied] = useState(false);
 
-  const copy = async () => {
-    textArea.current.select();
-    document.execCommand('copy');
-    setCopied(true);
-  };
+  const copy = useMemo(async () => {
+    if ('clipboard' in navigator) {
+      await navigator.clipboard.writeText(textToCopy);
+      setCopied(true);
+    } else {
+      document.execCommand('copy', true, textToCopy);
+      setCopied(true);
+    }
+  }, [textToCopy]);
   const resetCopyState = () => setCopied(false);
 
   return (
@@ -54,7 +56,14 @@ export const CopyButton = ({
           </Button>
         )}
       </Tooltip>
-      <textarea ref={textArea} value={textToCopy} className={classes.textarea} />
+      <Textarea
+        value={textToCopy}
+        position="absolute"
+        opacity="0"
+        pointerEvents="none"
+        w={0}
+        h={0}
+      />
     </>
   );
 };

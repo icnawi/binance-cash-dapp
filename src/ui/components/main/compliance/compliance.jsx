@@ -3,9 +3,8 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { useStyles } from './Compliance.styles';
-import { ComplianceReport } from './compliance-report/ComplianceReport';
-import { ComplianceResult } from './compliance-result/ComplianceResult';
+import { ComplianceReport } from './compliance-report/compliance-report.jsx';
+import { ComplianceResult } from './compliance-result/compliance-result.jsx';
 import { Note } from './note/note.jsx';
 import { useAppStore } from '../../../../stores/index.js';
 
@@ -16,7 +15,6 @@ export const Compliance = () => {
   const withdrawalData = useAppStore(state => state.compliance.withdrawalData);
   const resetCompliance = useAppStore(actions => actions.compliance.resetState);
   const { control, reset } = useForm();
-  const classes = useStyles();
 
   useEffect(() => {
     resetCompliance();

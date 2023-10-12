@@ -1,17 +1,16 @@
+import { Box, Flex, Stack, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useStyles } from './Note.styles';
 import { formatDateDiff, formatSubsequentDeposits } from '../../../../../../utils';
 import { Loader } from '../../../../loader/loader.jsx';
 import { Modal } from '../../../modal/modal.jsx';
-import { TextField } from '../../../text-field/text-field.jsx';
+// import { TextField } from '../../../text-field/text-field.jsx';
 import { Tooltip } from '../../../tooltip/tooltip.jsx';
 import { WithdrawalSettings } from '../withdrawal-settings/withdrawal-settings.jsx';
 
 export const Note = ({ control, hasError }) => {
   const { t } = useTranslation();
-  const classes = useStyles();
   const [isSettingsOpen, setSettingsOpen] = useState(false);
   const netId = useStoreState(state => state.common.user.network);
   const token = useStoreState(state => state.common.tokenConfig.token);
@@ -28,50 +27,81 @@ export const Note = ({ control, hasError }) => {
   const handleChange = note => parseNote({ note, netId });
 
   return (
-    <div className={classes.field}>
-      <div className={classes.labelWrapper}>
-        <div className={classes.labelContainer}>
-          <span className={classes.label}>{t('note')}</span>
+    <Stack mb="1.25rem">
+      <Flex justify="space-between">
+        <Flex align="center" mb=".5rem">
+          <Text as="span">{t('note')}</Text>
           <Tooltip placement="right" title={t('enterNoteTooltip')} width={180} />
-        </div>
-        <div>
+        </Flex>
+        <Flex>
           {isNoteLoaded && (
-            <Tooltip placement="right" title={t('withdrawalSettings')}>
-              <TuneIcon className={classes.optionIcon} onClick={openSettings} />
+            <Tooltip placement="right" label={t('withdrawalSettings')}>
+              <TuneIcon
+                color="primary.100"
+                cursor="pointer"
+                w={24}
+                ml=".25rem"
+                sx={{
+                  '&:hover': {
+                    color: 'primary.200',
+                  },
+                }}
+                onClick={openSettings}
+              />
             </Tooltip>
           )}
-        </div>
-      </div>
-      <TextField
-        control={control}
-        name="note"
-        variant="outlined"
-        placeholder={t('enterNotePlaceholder')}
-        fullWidth
-        classes={classes}
-        error={!!noteError || hasError}
-        helperText={noteError}
-        onChange={handleChange}
-      />
+        </Flex>
+      </Flex>
+      {/*<TextField*/}
+      {/*  control={control}*/}
+      {/*  name="note"*/}
+      {/*  variant="outlined"*/}
+      {/*  placeholder={t('enterNotePlaceholder')}*/}
+      {/*  fullWidth*/}
+      {/*  classes={classes}*/}
+      {/*  error={!!noteError || hasError}*/}
+      {/*  helperText={noteError}*/}
+      {/*  onChange={handleChange}*/}
+      {/*/>*/}
       {isNoteLoaded && (
-        <div className={classes.noteInfoContainer}>
-          <div className={classes.noteRow}>
-            <span>{t('amount')}</span>
-            <span className={classes.rowValue}>
+        <Box w="100%" fontSize=".85rem" lineHeight={1} mt="1.25rem">
+          <Flex
+            justify="space-between"
+            sx={{
+              '& + &': {
+                marginTop: '.6rem',
+              },
+            }}>
+            <Text as="span">{t('amount')}</Text>
+            <Text as="span" color="primary.100">
               {depositData.amount} {token}
-            </span>
-          </div>
-          <div className={classes.noteRow}>
-            <span>{t('timePassed')}</span>
-            <span className={classes.rowValue}>{formatDateDiff(depositData.timeStamp)}</span>
-          </div>
-          <div className={classes.noteRow}>
-            <span>{t('subsequentDeposits')}</span>
-            <span className={classes.rowValue}>
+            </Text>
+          </Flex>
+          <Flex
+            justify="space-between"
+            sx={{
+              '& + &': {
+                marginTop: '.6rem',
+              },
+            }}>
+            <Text as="span">{t('timePassed')}</Text>
+            <Text as="span" color="primary.100">
+              {formatDateDiff(depositData.timeStamp)}
+            </Text>
+          </Flex>
+          <Flex
+            justify="space-between"
+            sx={{
+              '& + &': {
+                marginTop: '.6rem',
+              },
+            }}>
+            <Text as="span">{t('subsequentDeposits')}</Text>
+            <Text as="span" color="primary.100">
               {formatSubsequentDeposits(depositData.subsequentDeposits)}
-            </span>
-          </div>
-        </div>
+            </Text>
+          </Flex>
+        </Box>
       )}
       {isNoteLoading ? <Loader type="tornado">{t('gettingNoteData')}</Loader> : ''}
       <Modal
@@ -81,6 +111,6 @@ export const Note = ({ control, hasError }) => {
         top>
         <WithdrawalSettings onSave={closeSettings} />
       </Modal>
-    </div>
+    </Stack>
   );
 };
