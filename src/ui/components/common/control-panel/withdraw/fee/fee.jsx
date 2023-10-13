@@ -1,11 +1,40 @@
 import { useTranslation } from 'react-i18next';
 
-import { useStyles } from './Fee.styles';
 import { fromDecimals, toDecimals } from '../../../../../../utils';
+
+// const styles = ({ colors }) => ({
+//   feeContainer: {
+//     width: '100%',
+//     fontSize: '.85rem',
+//     lineHeight: 1,
+//     marginTop: '.9rem',
+//   },
+//   feeRow: {
+//     display: 'flex',
+//     justifyContent: 'space-between',
+//
+//     '& + &': {
+//       marginTop: '.6rem',
+//     },
+//   },
+//   rowValue: {
+//     color: colors.PRIMARY,
+//   },
+//   divider: {
+//     backgroundColor: '#1e3629',
+//     border: 'none',
+//     display: 'block',
+//     height: 1,
+//     margin: '.5rem 0',
+//   },
+//   total: {
+//     marginBottom: '.5rem',
+//     fontSize: '1rem',
+//   },
+// });
 
 export const Fee = ({ fee }) => {
   const { t } = useTranslation();
-  const classes = useStyles();
   const tokenConfig = useStoreState(state => state.common.tokenConfig);
   const depositData = useStoreState(state => state.withdraw.depositData);
   const finalAmountToReceive =

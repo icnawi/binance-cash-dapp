@@ -1,6 +1,12 @@
-import { useStyles } from './NotFound.styles';
+// const styles = {
+// 	container: {
+// 		height: '100vh',
+// 		display: 'flex',
+// 		justifyContent: 'center',
+// 		alignItems: 'center',
+// 	},
+// };
 
 export const NotFound = () => {
-	const classes = useStyles();
-	return <div className={classes.container}>404: Page not found</div>;
+  return <div className={classes.container}>404: Page not found</div>;
 };

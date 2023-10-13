@@ -1,11 +1,17 @@
 import { useTranslation } from 'react-i18next';
 
-import { useStyles } from './WithdrawConfirmModal.styles';
 import { Modal } from '../../../modal/modal.jsx';
+
+// const styles = {
+//   confirmButton: {
+//     fontSize: 14,
+//     marginTop: 20,
+//     width: '100%',
+//   },
+// };
 
 export const WithdrawConfirmModal = ({ open, onClose }) => {
   const { t } = useTranslation();
-  const classes = useStyles();
   const proof = useStoreState(state => state.withdraw.proof);
   const withdraw = useStoreActions(actions => actions.withdraw.onWithdraw);
 

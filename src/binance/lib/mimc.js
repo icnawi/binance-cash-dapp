@@ -5,7 +5,7 @@ const { bigInt } = snarkjs;
 
 export class MimcSpongeHasher {
   constructor() {
-  	this.mimcsponge = circomlib.mimcsponge;
+    this.mimcsponge = circomlib.mimcsponge;
   }
 
   hash(level, left, right) {

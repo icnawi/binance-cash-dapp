@@ -1,15 +1,36 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useStyles } from './Preferences.styles';
 import { ChangeToken } from './change-token/change-token.jsx';
 import { Settings } from './settings/settings.jsx';
-import { Connect } from '../../../connect/Connect';
+import { Connect } from '../../../connect/connect.jsx';
 import { Modal } from '../../../modal/modal.jsx';
+
+// const styles = ({ colors }) => ({
+//   navbarButtons: {
+//     flex: '1 0',
+//     display: 'flex',
+//   },
+//   buttonGroup: {
+//     alignItems: 'center',
+//     display: 'flex',
+//     justifyContent: 'flex-end',
+//     paddingLeft: 0,
+//     paddingRight: 0,
+//   },
+//   button: {
+//     padding: 'calc(.5em - 1px) 1em',
+//     fontSize: '1rem',
+//     borderRadius: 4,
+//     backgroundColor: colors.DARK_PRIMARY,
+//     '&:not(:last-child)': {
+//       marginRight: '.5rem',
+//     },
+//   },
+// });
 
 export const Preferences = () => {
   const { t } = useTranslation();
-  const classes = useStyles();
   const [isSettingsOpen, setSettingsOpen] = useState(false);
   const [isConnectOpen, setConnectOpen] = useState(false);
   const isConnected = useStoreState(state => state.common.user.isConnected);

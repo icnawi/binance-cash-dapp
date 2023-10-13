@@ -2,16 +2,25 @@ import { useEffect, useMemo, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { useStyles } from './Withdraw.styles';
 import { Note } from './note/note.jsx';
 import { Recipient } from './recipient/recipient.jsx';
 import { WithdrawConfirmModal } from './withdraw-confirm-modal/withdraw-confirm-modal.jsx';
 import { WithdrawNotification } from './withdraw-notification/withdraw-notification.jsx';
 import { Loader } from '../../../loader/loader.jsx';
 
+// const styles = {
+//   form: {
+//     width: '100%',
+//   },
+//   submitButton: {
+//     fontSize: 14,
+//     width: '100%',
+//     display: 'flex',
+//   },
+// };
+
 export const Withdraw = () => {
   const { t } = useTranslation();
-  const classes = useStyles();
   const { control, handleSubmit, setValue, reset } = useForm();
   const [isConfirmOpen, setConfirmOpen] = useState(false);
   const recipient = useWatch({ control, name: 'recipient' });

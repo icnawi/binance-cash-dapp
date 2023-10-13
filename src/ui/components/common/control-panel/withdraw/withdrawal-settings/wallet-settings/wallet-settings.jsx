@@ -1,11 +1,18 @@
 import { useTranslation } from 'react-i18next';
 
-import { useStyles } from './WalletSettings.styles';
 import { Fee } from '../../fee/fee.jsx';
+
+// const styles = ({ colors }) => ({
+//   warning: {
+//     border: `1px solid ${colors.WARN}`,
+//     borderRadius: 4,
+//     padding: '.75rem 1rem',
+//     margin: '1rem 0',
+//   },
+// });
 
 export const WalletSettings = () => {
   const { t } = useTranslation();
-  const classes = useStyles();
   const walletFee = useStoreState(state => state.withdraw.walletFee);
 
   return (

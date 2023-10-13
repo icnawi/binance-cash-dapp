@@ -2,16 +2,30 @@ import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { useStyles } from './WithdrawalSettings.styles';
 import { RelayerSettings } from './relayer-settings/relayer-settings.jsx';
 import { WalletSettings } from './wallet-settings/wallet-settings.jsx';
 import { API } from '../../../../../../binance';
 import { SimpleTabs } from '../../../simple-tabs/simple-tabs.jsx';
 import { Tooltip } from '../../../tooltip/tooltip.jsx';
 
+// const styles = ({ colors }) => ({
+//   buttonsContainer: {
+//     display: 'flex',
+//     marginTop: '1.5rem',
+//   },
+//   outlinedButton: {
+//     backgroundColor: colors.DARK_PRIMARY,
+//     width: '50%',
+//     marginRight: '.5rem',
+//   },
+//   submitButton: {
+//     width: '50%',
+//     marginLeft: '.5rem',
+//   },
+// });
+
 export const WithdrawalSettings = ({ onSave }) => {
   const { t } = useTranslation();
-  const classes = useStyles();
   const [relayerInfo, setRelayerInfo] = useState({});
   const netId = useStoreState(state => state.common.user.network);
   const relayer = useStoreState(state => state.withdraw.relayer);

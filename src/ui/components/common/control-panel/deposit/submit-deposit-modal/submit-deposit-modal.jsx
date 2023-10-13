@@ -1,15 +1,40 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useStyles } from './SubmitDepositModal.styles';
 import { saveFile } from '../../../../../../utils';
 import { Loader } from '../../../../loader/loader.jsx';
 import { CopyButton } from '../../../copy-button/copy-button.jsx';
 import { Modal } from '../../../modal/modal.jsx';
 
+// const styles = ({ colors }) => ({
+//   checkbox: {
+//     color: colors.PRIMARY,
+//   },
+//   checkboxLabel: {
+//     margin: '.5rem 0',
+//   },
+//   copyButton: {
+//     fontSize: '10px',
+//     marginLeft: 8,
+//     minWidth: 18,
+//     padding: '4px 0',
+//     width: 18,
+//   },
+//   copyIcon: {
+//     fontSize: '10px',
+//   },
+//   note: {
+//     margin: '1rem 0',
+//     wordBreak: 'break-all',
+//   },
+//   submitButton: {
+//     fontSize: 14,
+//     width: '100%',
+//   },
+// });
+
 export const SubmitDepositModal = ({ open, onClose }) => {
   const { t } = useTranslation();
-  const classes = useStyles();
   const [isLoading, setLoading] = useState(false);
   const [backupChecked, setBackupChecked] = useState(false);
   const network = useStoreState(state => state.common.user.network);

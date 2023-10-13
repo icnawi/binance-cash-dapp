@@ -1,14 +1,48 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useStyles } from './Statistics.styles';
 import { formatDateDiff } from '../../../../../utils';
 import { Grid } from '../../grid/grid.jsx';
 import { Tooltip } from '../../tooltip/tooltip.jsx';
 
+// const styles = ({ colors }) => ({
+//   bold: {
+//     fontWeight: 'bold',
+//     marginRight: '.5em',
+//   },
+//   gridWrap: {
+//     '& .MuiGrid-item': {
+//       paddingBottom: '4px',
+//     },
+//   },
+//   label: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     fontFamily: '"PT mono", monospace',
+//     fontSize: '1rem',
+//     marginBottom: '.55em',
+//
+//     '& img': {
+//       margin: '0 .45rem',
+//     },
+//   },
+//   field: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     fontFamily: '"PT mono", monospace',
+//     fontSize: '1rem',
+//     marginBottom: '.55em',
+//     '&:not(:last-child)': {
+//       marginBottom: '1.25rem',
+//     },
+//   },
+//   timeLabel: {
+//     color: colors.PRIMARY,
+//   },
+// });
+
 export const Statistics = () => {
   const { t } = useTranslation();
-  const classes = useStyles();
   const depositAmount = useStoreState(state => state.deposit.depositAmount);
   const isInitialized = useStoreState(state => state.common.user.isInitialized);
   const network = useStoreState(state => state.common.user.network);

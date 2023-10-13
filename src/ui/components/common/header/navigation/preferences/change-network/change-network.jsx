@@ -1,9 +1,18 @@
-import { useStyles } from './ChangeNetwork.styles';
 import { useAppStore } from '../../../../../../../stores/index.js';
 import { RadioButtonList } from '../../../../radio-button-list/radio-button-list.jsx';
 
+// const styles = {
+//   network: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     '& img': {
+//       width: 22,
+//       marginRight: '.8em',
+//     },
+//   },
+// };
+
 export const NetworkChange = ({ onClose }) => {
-  const classes = useStyles();
   const networkId = useAppStore(state => state.common.user.network);
   const tokenConfig = useAppStore(state => state.common.tokenConfig);
   const setNetwork = useAppStore(action => action.common.setNetwork);

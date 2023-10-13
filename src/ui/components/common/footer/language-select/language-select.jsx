@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useStyles } from './LanguageSelect.styles';
 import cnIcon from '../../../../images/languages/cn.svg';
 import enIcon from '../../../../images/languages/en.svg';
 import ruIcon from '../../../../images/languages/ru.svg';
@@ -24,11 +23,28 @@ const languages = [
   },
 ];
 
+// const styles = {
+//   container: {
+//     display: 'inline-block',
+//   },
+//   button: {
+//     paddingRight: 0,
+//   },
+//   menuItem: {
+//     '& img': {
+//       marginRight: '0.7rem',
+//     },
+//   },
+//   icon: {
+//     height: '24px',
+//     width: '24px',
+//   },
+// };
+
 export const LanguageSelect = () => {
   const { i18n } = useTranslation();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const classes = useStyles();
   const activeLang = useMemo(() => {
     return languages.find(({ key }) => key === i18n.language) || {};
   }, [i18n.language]);

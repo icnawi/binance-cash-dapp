@@ -1,7 +1,17 @@
-import { useStyles } from './Grid.styles';
+// const styles = ({ colors }) => ({
+//   row: {
+//     fontFamily: '"PT mono", monospace',
+//     fontSize: '.82rem',
+//     backgroundColor: '#171717',
+//     padding: '.375rem .25rem .375rem .625rem',
+//
+//     '&:nth-child(2n)': {
+//       backgroundColor: colors.BACKGROUND,
+//     },
+//   },
+// });
 
 export const Grid = ({ items = [], loading, columnLength = 5 }) => {
-  const classes = useStyles();
   const firstColumn = items.slice(0, columnLength);
   const secondColumn = items.slice(columnLength, columnLength * 2);
 
